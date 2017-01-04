@@ -1,6 +1,6 @@
 /* globals fetch */
 
-import URIValue from 'rheactor-value-objects/uri'
+import URIValue from 'rheactor-value-objects/dist/uri'
 import 'whatwg-fetch'
 import {memoize} from 'lodash'
 import {Promise} from 'bluebird'
