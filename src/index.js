@@ -7,7 +7,7 @@ import {Promise} from 'bluebird'
 import {StaRH, Link, LinkType, Status, StaRHsStatus, Profile, ProfileType, List, JsonWebTokenType} from 'starhs-models'
 import JsonWebToken from 'rheactor-models/jsonwebtoken'
 import {String as StringType, Object as ObjectType, Number as NumberType, maybe} from 'tcomb'
-import HttpProblem from 'rheactor-web-app/js/model/http-problem'
+import HttpProblem from 'rheactor-web-app/dist/model/http-problem'
 
 const MaybeObjectType = maybe(ObjectType)
 const MaybeJsonWebTokenType = maybe(JsonWebTokenType)
