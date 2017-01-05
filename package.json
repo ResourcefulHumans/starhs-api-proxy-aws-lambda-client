@@ -28,7 +28,7 @@
     "bluebird": "^3.4.7",
     "lodash": "^4.17.4",
     "rheactor-models": "^1.1.1",
-    "rheactor-value-objects": "^3.6.0",
+    "rheactor-value-objects": "^4.0.0",
     "rheactor-web-app": "^2.12.0",
     "starhs-models": "^5.2.2",
     "tcomb": "^3.2.15",
