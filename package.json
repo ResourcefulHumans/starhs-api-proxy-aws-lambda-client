@@ -27,16 +27,15 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "lodash": "^4.17.4",
-    "rheactor-models": "^1.1.1",
-    "rheactor-value-objects": "^3.6.0",
-    "rheactor-web-app": "^2.12.0",
-    "starhs-models": "^5.2.2",
+    "rheactor-models": "^2.2.1",
+    "rheactor-value-objects": "^4.1.0",
+    "starhs-models": "^6.0.1",
     "tcomb": "^3.2.15",
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-preset-env": "^1.1.1",
+    "babel-preset-env": "^1.1.5",
     "babel-preset-es2015": "^6.18.0",
     "babel-register": "^6.18.0",
     "husky": "<2.0.0",

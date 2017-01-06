@@ -1,13 +1,12 @@
 /* globals fetch */
 
-import URIValue from 'rheactor-value-objects/dist/uri'
+import {URIValue, URIValueType} from 'rheactor-value-objects'
 import 'whatwg-fetch'
 import {memoize} from 'lodash'
 import {Promise} from 'bluebird'
-import {StaRH, Link, LinkType, Status, StaRHsStatus, Profile, ProfileType, List, JsonWebTokenType} from 'starhs-models'
-import JsonWebToken from 'rheactor-models/jsonwebtoken'
+import {StaRH, StaRHsStatus, Profile, ProfileType} from 'starhs-models'
+import {Link, LinkType, Status, List, JsonWebToken, JsonWebTokenType, HttpProblem} from 'rheactor-models'
 import {String as StringType, Object as ObjectType, Number as NumberType, maybe} from 'tcomb'
-import HttpProblem from 'rheactor-web-app/dist/model/http-problem'
 
 const MaybeObjectType = maybe(ObjectType)
 const MaybeJsonWebTokenType = maybe(JsonWebTokenType)
@@ -16,7 +15,7 @@ const CONTENT_TYPE = MIME_TYPE + '; charset=utf-8'
 
 export class StaRHsAPIClient {
   constructor (endpoint) {
-    URIValue.Type(endpoint)
+    URIValueType(endpoint)
     this.endpoint = endpoint.slashless()
   }
 
@@ -30,7 +29,7 @@ export class StaRHsAPIClient {
 
   fetch (method, uri, data, token) {
     StringType(method)
-    URIValue.Type(uri)
+    URIValueType(uri)
     MaybeObjectType(data)
     MaybeJsonWebTokenType(token)
     const opts = {
@@ -94,7 +93,7 @@ export class StaRHsAPIClient {
         )
         .then(data => Promise.resolve(data.$links).map(data => Link.fromJSON(data))
           .then(links => {
-            const token = new JsonWebToken(data.token.token, data.$links)
+            const token = new JsonWebToken(data.token.token, links)
             return Promise
                 .join(
                   token,
