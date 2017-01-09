@@ -1,7 +1,9 @@
 /* globals fetch */
 
+import {polyfill as es6promisePolyfill} from 'es6-promise'
+es6promisePolyfill()
+import 'isomorphic-fetch'
 import {URIValue, URIValueType} from 'rheactor-value-objects'
-import 'whatwg-fetch'
 import {memoize} from 'lodash'
 import {Promise} from 'bluebird'
 import {StaRH, StaRHsStatus, Profile, ProfileType} from 'starhs-models'
