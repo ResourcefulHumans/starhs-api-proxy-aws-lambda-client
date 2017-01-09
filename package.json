@@ -34,6 +34,7 @@
     "lodash": "^4.17.4",
     "rheactor-models": "^2.2.2",
     "rheactor-value-objects": "^4.2.2",
+    "starhs-api-proxy-aws-lambda": "<2.0.0",
     "starhs-models": "^6.0.1",
     "tcomb": "^3.2.15"
   },
