@@ -33,7 +33,7 @@
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
     "rheactor-models": "^2.2.2",
-    "rheactor-value-objects": "^5.0.0",
+    "rheactor-value-objects": "^6.0.0",
     "starhs-api-proxy-aws-lambda": "<2.0.0",
     "starhs-models": "^6.0.1",
     "tcomb": "^3.2.15"
