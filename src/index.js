@@ -47,7 +47,7 @@ export class StaRHsAPIClient {
       .try(() => fetch(uri.toString(), opts)
         .catch(err => {
           throw new HttpProblem(
-            'fetchError',
+            new URIValue('https://github.com/ResourcefulHumans/starhs-api-proxy-aws-lambda-client#fetchError'),
             `${method} ${uri.toString()}: ${err.message}`,
             500
           )
@@ -58,7 +58,7 @@ export class StaRHsAPIClient {
           .then(data => {
             if (response.status >= 400) {
               const {type, title, status, detail} = data
-              throw new HttpProblem(type, title, status, detail)
+              throw new HttpProblem(new URIValue(type), title, status, detail)
             }
             return data
           })

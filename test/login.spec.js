@@ -2,6 +2,7 @@ import {expect} from 'chai'
 import {createMockServer} from './helper'
 import {StaRHsAPIClient} from '../src'
 import {HttpProblem, HttpProblemType} from 'rheactor-models'
+import {URIValue} from 'rheactor-value-objects'
 
 /* global describe after it */
 
@@ -36,7 +37,7 @@ describe('login()', () => {
       HttpProblemType(err)
       expect(err).to.be.instanceof(HttpProblem)
       expect(err.status).to.equal(403)
-      expect(err.type).to.equal('https://github.com/ResourcefulHumans/starhs-api-proxy-aws-lambda#Forbidden')
+      expect(err.type.equals(new URIValue('https://github.com/ResourcefulHumans/starhs-api-proxy-aws-lambda#Forbidden'))).to.equal(true)
       expect(err.title).to.equal('Login credentials wrong! Generation of Session failed')
       expect(err.detail).to.equal('{\'Message\':\'Fehler\',\'ExceptionMessage\':\'Login credentials wrong! Generation of Session failed\',\'ExceptionType\':\'System.Exception\',\'StackTrace\':null}')
       done()
