@@ -34,7 +34,7 @@
     "lodash": "^4.17.4",
     "rheactor-models": ">=2.4.0 <3.0.0",
     "rheactor-value-objects": "8.x",
-    "starhs-models": "6.x",
+    "starhs-models": "^7.0.0",
     "tcomb": "^3.2.15"
   },
   "devDependencies": {
