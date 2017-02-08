@@ -122,7 +122,7 @@ export class StaRHsAPIClient {
     StringType(message)
     NumberType(amount)
     const data = {
-      to: to.$id,
+      to: to.$id.toString(),
       message,
       amount
     }
