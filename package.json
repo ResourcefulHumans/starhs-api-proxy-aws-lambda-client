@@ -38,7 +38,7 @@
     "@resourcefulhumans/rheactor-errors": "1.x",
     "rheactor-models": "3.x >=3.2.1",
     "rheactor-value-objects": "9.x >=9.0.1",
-    "starhs-models": "7.x >=7.0.1"
+    "starhs-models": "8.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
