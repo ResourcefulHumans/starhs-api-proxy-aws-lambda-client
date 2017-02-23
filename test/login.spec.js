@@ -31,6 +31,7 @@ describe('login()', () => {
         ))
       }
     })
+    mockServer.listen(61234)
 
     const cli = new StaRHsAPIClient(mockServer.endpoint)
     cli.login('foo', 'bar').catch(err => {

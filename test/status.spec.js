@@ -29,6 +29,7 @@ describe('status()', () => {
         ))
       }
     })
+    mockServer.listen(61234)
 
     const cli = new StaRHsAPIClient(mockServer.endpoint)
     cli.status().then(status => {
