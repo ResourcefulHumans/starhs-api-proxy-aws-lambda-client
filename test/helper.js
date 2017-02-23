@@ -30,6 +30,12 @@ export function createMockServer (routes) {
               '$context': 'https://github.com/ResourcefulHumans/rheactor-models#Link',
               'subject': 'https://tools.ietf.org/html/rfc7519',
               'href': 'http://127.0.0.1:61234/login'
+            },
+            {
+              '$context': 'https://github.com/ResourcefulHumans/rheactor-models#Link',
+              'subject': 'https://github.com/ResourcefulHumans/rheactor-models#User',
+              'href': 'http://127.0.0.1:61234/newPassword',
+              'rel': 'newPassword'
             }
           ]
         }
@@ -43,10 +49,9 @@ export function createMockServer (routes) {
     }
   })
 
-  server.listen(61234)
-
   return {
     close: server.close.bind(server),
+    listen: server.listen.bind(server),
     endpoint: new URIValue('http://127.0.0.1:61234/')
   }
 }

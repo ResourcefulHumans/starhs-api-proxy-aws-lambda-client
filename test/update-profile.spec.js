@@ -31,6 +31,7 @@ describe('updateProfile()', () => {
         })
       }
     })
+    mockServer.listen(61234)
 
     const cli = new StaRHsAPIClient(mockServer.endpoint)
     profile = generateProfile(cli.endpoint, 'Antarctica')

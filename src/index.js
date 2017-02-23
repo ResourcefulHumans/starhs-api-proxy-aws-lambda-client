@@ -7,7 +7,7 @@ import {URIValue, URIValueType} from 'rheactor-value-objects'
 import {memoize} from 'lodash'
 import {Promise} from 'bluebird'
 import {StaRH, StaRHsStatus, Profile, ProfileType} from 'starhs-models'
-import {Link, LinkType, Status, List, JsonWebToken, JsonWebTokenType, HttpProblem} from 'rheactor-models'
+import {Link, LinkType, Status, List, JsonWebToken, JsonWebTokenType, HttpProblem, User} from 'rheactor-models'
 import {String as StringType, Object as ObjectType, Number as NumberType, maybe} from 'tcomb'
 
 const MaybeObjectType = maybe(ObjectType)
@@ -213,5 +213,16 @@ export class StaRHsAPIClient {
     ProfileType(profile)
     JsonWebTokenType(token)
     return this.post(profile.$links.filter(link => link.rel === 'update-profile')[0].href, profile.toJSON(), token)
+  }
+
+  /**
+   * @param {string} username
+   * @returns {Promise.<Object>}
+   */
+  newPassword (username) {
+    StringType(username)
+    return this.index()
+      .filter(link => link.subject.equals(User.$context) && link.rel === 'newPassword')
+      .spread(passwordLink => this.post(passwordLink.href, {username}))
   }
 }
