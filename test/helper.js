@@ -79,5 +79,6 @@ export function generateProfile (endpoint, username) {
   profile.$links.push(new Link(new URIValue([endpoint, 'staRHs', username, 'received'].join('/')), StaRH.$context, true, 'received-staRHs'))
   profile.$links.push(new Link(new URIValue([endpoint, 'colleagues', username].join('/')), Profile.$context, true, 'colleagues'))
   profile.$links.push(new Link(new URIValue([endpoint, 'share'].join('/')), StaRH.$context, false, 'share-staRH'))
+  profile.$links.push(new Link(new URIValue([endpoint, 'profileUpdate', username].join('/')), Profile.$context, false, 'update-profile'))
   return profile
 }

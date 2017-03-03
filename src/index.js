@@ -201,4 +201,17 @@ export class StaRHsAPIClient {
     return this.post(link.href, {}, token)
       .then(data => List.fromJSON(data, staRHdata => StaRH.fromJSON(staRHdata))) // NOTE: currently only staRHs list is implemented
   }
+
+  /**
+   * Update the users profile with the data given in profile
+   *
+   * @param {Profile} profile
+   * @param {JsonWebToken} token
+   * @returns {Promise}
+   */
+  updateProfile (profile, token) {
+    ProfileType(profile)
+    JsonWebTokenType(token)
+    return this.post(profile.$links.filter(link => link.rel === 'update-profile')[0].href, profile.toJSON(), token)
+  }
 }
