@@ -26,12 +26,12 @@ describe('share()', () => {
         req.on('data', (chunk) => {
           body.push(chunk)
         }).on('end', () => {
+          res.end(JSON.stringify({}))
           const payload = JSON.parse(Buffer.concat(body).toString())
           expect(payload.to).to.equal(toID)
           expect(payload.message).to.equal(message)
           expect(payload.amount).to.equal(starhAmount)
-
-          res.end(JSON.stringify({}))
+          done()
         })
       }
     })
@@ -41,9 +41,7 @@ describe('share()', () => {
     const to = generateProfile(cli.endpoint, 'artica')
     toID = to.$id.toString()
     generateToken().then(token => {
-      cli.share(token, from, to, message, starhAmount).then(() => {
-        done()
-      })
+      cli.share(token, from, to, message, starhAmount)
     })
   })
 })
