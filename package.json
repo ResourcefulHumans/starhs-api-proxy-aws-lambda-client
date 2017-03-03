@@ -27,18 +27,16 @@
     "url": "https://github.com/ResourcefulHumans/staRHs-API-proxy-aws-lambda-client/issues"
   },
   "homepage": "https://github.com/ResourcefulHumans/staRHs-API-proxy-aws-lambda-client#readme",
-  "dependencies": {
+  "peerDependencies": {
+    "@resourcefulhumans/rheactor-errors": "1.x",
     "bluebird": "^3.4.7",
     "es6-promise": "^4.0.5",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
-    "tcomb": "^3.2.15"
-  },
-  "peerDependencies": {
-    "@resourcefulhumans/rheactor-errors": "1.x",
     "rheactor-models": "3.x >=3.2.1",
     "rheactor-value-objects": "9.x >=9.0.1",
-    "starhs-models": "8.x"
+    "starhs-models": "8.x",
+    "tcomb": "^3.2.15"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
