@@ -216,6 +216,21 @@ export class StaRHsAPIClient {
   }
 
   /**
+   * Update the user's profile picture
+   *
+   * @param {Profile} profile
+   * @param {ArrayBuffer} picture Data of the image, base64 encoded
+   * @param {JsonWebToken} token
+   * @returns {Promise}
+   */
+  updateAvatar (profile, picture, token) {
+    ProfileType(profile)
+    StringType(picture)
+    JsonWebTokenType(token)
+    return this.post(profile.$links.filter(link => link.rel === 'update-avatar')[0].href, {file: picture}, token)
+  }
+
+  /**
    * @param {string} username
    * @returns {Promise.<Object>}
    */
