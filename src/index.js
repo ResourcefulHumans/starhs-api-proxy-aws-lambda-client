@@ -54,6 +54,7 @@ export class StaRHsAPIClient {
         })
       )
       .then(response => {
+        if (response.status === 204) return
         return response.json()
           .then(data => {
             if (response.status >= 400) {
