@@ -2,13 +2,15 @@ import {expect} from 'chai'
 import {createMockServer} from './helper'
 import {StaRHsAPIClient} from '../src'
 import {URIValue} from 'rheactor-value-objects'
+import {HttpProblem} from 'rheactor-models'
 
-/* global describe after it */
+/* global describe afterEach it */
 
 describe('StaRHsAPIClient', () => {
+  let mockServer
+  afterEach(done => mockServer.close(done))
+
   describe('fetch()', () => {
-    let mockServer
-    after(done => mockServer.close(done))
     it('should return an empty result if status code 204 is returned from the API', done => {
       mockServer = createMockServer({
         '.*': (req, res) => {
@@ -31,5 +33,24 @@ describe('StaRHsAPIClient', () => {
         done()
       })
     })
+  })
+
+  it('should throw an exception if the request fails', done => {
+    mockServer = createMockServer({
+      '.*': (req, res) => {
+        res.writeHead(500)
+        res.end('foo')
+      }
+    })
+    mockServer.listen(61234)
+    const cli = new StaRHsAPIClient(mockServer.endpoint)
+    cli.fetch('POST', new URIValue(mockServer.endpoint))
+      .catch(err => {
+        expect(HttpProblem.is(err)).to.equal(true)
+        expect(err.title).to.equal('Malformed server response!')
+        expect(err.status).to.equal(500)
+        expect(err.detail).to.equal('"foo"')
+        done()
+      })
   })
 })

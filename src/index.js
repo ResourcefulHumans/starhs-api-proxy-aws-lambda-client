@@ -29,6 +29,14 @@ export class StaRHsAPIClient {
     return this.fetch('POST', uri, data, token)
   }
 
+  /**
+   * @param {String} method
+   * @param {URIValue} uri
+   * @param {Object} data
+   * @param {JsonWebToken} token
+   * @returns {Promise.<Object>}
+   * @throws {HttpProblem}
+   */
   fetch (method, uri, data, token) {
     StringType(method)
     URIValueType(uri)
@@ -55,6 +63,16 @@ export class StaRHsAPIClient {
       )
       .then(response => {
         if (response.status === 204) return
+        if (response.headers.get('Content-Type') !== CONTENT_TYPE) {
+          return response.text().then(text => {
+            throw new HttpProblem(
+              new URIValue('https://github.com/ResourcefulHumans/starhs-api-proxy-aws-lambda-client#fetchError'),
+              'Malformed server response!',
+              response.status,
+              JSON.stringify(text)
+            )
+          })
+        }
         return response.json()
           .then(data => {
             if (response.status >= 400) {
