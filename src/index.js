@@ -217,6 +217,19 @@ export class StaRHsAPIClient {
   }
 
   /**
+   * Returns the profile for the given ID
+   *
+   * @param {URIValue} id
+   * @param {JsonWebToken} token
+   * @returns {Promise}
+   */
+  profile (id, token) {
+    URIValueType(id)
+    JsonWebTokenType(token)
+    return this.post(id, undefined, token).then(response => Profile.fromJSON(response))
+  }
+
+  /**
    * Update the user's profile picture
    *
    * @param {Profile} profile

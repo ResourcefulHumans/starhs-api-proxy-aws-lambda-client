@@ -73,7 +73,7 @@ export function generateToken () {
 
 export function generateProfile (endpoint, username) {
   const profile = new Profile({
-    $id: new URIValue(`${endpoint}#profile:${username}`),
+    $id: new URIValue(`${endpoint}/profile/${username}`),
     email: new EmailValue(`${username}@example.com`),
     firstname: username,
     lastname: 'Sample',
