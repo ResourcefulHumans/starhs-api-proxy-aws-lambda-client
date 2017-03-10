@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/ResourcefulHumans/staRHs-API-proxy-aws-lambda-client#readme",
   "peerDependencies": {
-    "@resourcefulhumans/rheactor-errors": "1.x",
+    "@resourcefulhumans/rheactor-errors": "^1.1.0",
     "bluebird": "^3.4.7",
     "es6-promise": "^4.0.5",
     "isomorphic-fetch": "^2.2.1",
