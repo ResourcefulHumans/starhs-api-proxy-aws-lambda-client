@@ -63,7 +63,8 @@ export class StaRHsAPIClient {
       )
       .then(response => {
         if (response.status === 204) return
-        if (response.headers.get('Content-Type') !== CONTENT_TYPE) {
+        const responseContentType = response.headers.get('Content-Type')
+        if (!responseContentType || responseContentType.toLowerCase().indexOf(MIME_TYPE.toLowerCase()) !== 0) {
           return response.text().then(text => {
             throw new HttpProblem(
               new URIValue('https://github.com/ResourcefulHumans/starhs-api-proxy-aws-lambda-client#fetchError'),

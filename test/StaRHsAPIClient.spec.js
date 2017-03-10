@@ -53,4 +53,27 @@ describe('StaRHsAPIClient', () => {
         done()
       })
   })
+
+  it('should accept content-types without charset', done => {
+    mockServer = createMockServer({
+      '.*': (req, res) => {
+        expect(req.method).to.equal('GET')
+        expect(req.headers['content-type']).to.equal('application/vnd.resourceful-humans.starhs.v1+json; charset=utf-8')
+        res.writeHead(
+          200,
+          {
+            'Content-Type': 'application/vnd.resourceful-humans.starhs.v1+json'
+          }
+        )
+        res.end(JSON.stringify({foo: 'bar'}))
+      }
+    })
+    mockServer.listen(61234)
+
+    const cli = new StaRHsAPIClient(mockServer.endpoint)
+    cli.get(new URIValue(mockServer.endpoint)).then(response => {
+      expect(response).to.deep.equal({foo: 'bar'})
+      done()
+    })
+  })
 })
