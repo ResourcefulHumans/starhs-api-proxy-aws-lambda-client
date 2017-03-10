@@ -33,7 +33,7 @@
     "es6-promise": "^4.0.5",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
-    "rheactor-models": "3.x >=3.2.1",
+    "rheactor-models": "3.7.0",
     "rheactor-value-objects": "^10.0.0",
     "starhs-models": "8.x",
     "tcomb": "^3.2.15"
