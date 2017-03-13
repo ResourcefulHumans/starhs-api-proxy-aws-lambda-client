@@ -72,19 +72,21 @@ export function generateToken () {
 }
 
 export function generateProfile (endpoint, username) {
-  const profile = new Profile({
+  const $links = [
+    new Link(new URIValue([endpoint, 'staRHs', username, 'shared'].join('/')), StaRH.$context, true, 'shared-staRHs'),
+    new Link(new URIValue([endpoint, 'staRHs', username, 'received'].join('/')), StaRH.$context, true, 'received-staRHs'),
+    new Link(new URIValue([endpoint, 'colleagues', username].join('/')), Profile.$context, true, 'colleagues'),
+    new Link(new URIValue([endpoint, 'share'].join('/')), StaRH.$context, false, 'share-staRH'),
+    new Link(new URIValue([endpoint, 'profileUpdate', username].join('/')), Profile.$context, false, 'update-profile'),
+    new Link(new URIValue([endpoint, 'avatarUpdate', username].join('/')), Profile.$context, false, 'update-avatar')
+  ]
+  return new Profile({
     $id: new URIValue(`${endpoint}/profile/${username}`),
     email: new EmailValue(`${username}@example.com`),
     firstname: username,
     lastname: 'Sample',
     organization: 'Resourceful Humans',
-    avatar: new URIValue('http://starhs.net/profileimgs/')
+    avatar: new URIValue('http://starhs.net/profileimgs/'),
+    $links
   })
-  profile.$links.push(new Link(new URIValue([endpoint, 'staRHs', username, 'shared'].join('/')), StaRH.$context, true, 'shared-staRHs'))
-  profile.$links.push(new Link(new URIValue([endpoint, 'staRHs', username, 'received'].join('/')), StaRH.$context, true, 'received-staRHs'))
-  profile.$links.push(new Link(new URIValue([endpoint, 'colleagues', username].join('/')), Profile.$context, true, 'colleagues'))
-  profile.$links.push(new Link(new URIValue([endpoint, 'share'].join('/')), StaRH.$context, false, 'share-staRH'))
-  profile.$links.push(new Link(new URIValue([endpoint, 'profileUpdate', username].join('/')), Profile.$context, false, 'update-profile'))
-  profile.$links.push(new Link(new URIValue([endpoint, 'avatarUpdate', username].join('/')), Profile.$context, false, 'update-avatar'))
-  return profile
 }
