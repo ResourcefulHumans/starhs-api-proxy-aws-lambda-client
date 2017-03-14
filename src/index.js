@@ -6,9 +6,9 @@ import 'isomorphic-fetch'
 import {URIValue, URIValueType} from 'rheactor-value-objects'
 import {memoize} from 'lodash'
 import {Promise} from 'bluebird'
-import {StaRH, StaRHsStatus, Profile, ProfileType} from 'starhs-models'
+import {StaRH, StaRHsStatus, Profile, ProfileType, StaRHmap} from 'starhs-models'
 import {Link, LinkType, Status, List, JsonWebToken, JsonWebTokenType, HttpProblem, User} from 'rheactor-models'
-import {String as StringType, Object as ObjectType, Number as NumberType, maybe} from 'tcomb'
+import {String as StringType, Object as ObjectType, Number as NumberType, maybe, Date as DateType} from 'tcomb'
 
 const MaybeObjectType = maybe(ObjectType)
 const MaybeJsonWebTokenType = maybe(JsonWebTokenType)
@@ -272,5 +272,21 @@ export class StaRHsAPIClient {
     return this.index()
       .filter(link => link.subject.equals(User.$context) && link.rel === 'newPassword')
       .spread(passwordLink => this.post(passwordLink.href, {username}))
+  }
+
+  /**
+   * @param {JsonWebToken} token
+   * @param {Date} start
+   * @param {Date} end
+   * @returns {Promise.<StaRHmap>}
+   */
+  staRHmap (token, start, end) {
+    JsonWebTokenType(token)
+    DateType(start)
+    DateType(end)
+    return this.index()
+      .filter(link => link.subject.equals(StaRHmap.$context))
+      .spread(link => this.post(link.href, {start: start.toISOString(), end: end.toISOString()}, token))
+      .then(response => StaRHmap.fromJSON(response))
   }
 }
