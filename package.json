@@ -21,8 +21,8 @@
     "social",
     "realtime"
   ],
-  "author": "Resourceful Humans <info@resourceful-humans.com>",
-  "license": "UNLICENSED",
+  "author": "Resourceful Humans GmbH <info@resourceful-humans.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ResourcefulHumans/staRHs-API-proxy-aws-lambda-client/issues"
   },
