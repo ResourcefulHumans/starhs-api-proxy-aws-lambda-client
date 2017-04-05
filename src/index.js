@@ -1,7 +1,5 @@
 /* globals fetch */
-
 import {polyfill as es6promisePolyfill} from 'es6-promise'
-es6promisePolyfill()
 import 'isomorphic-fetch'
 import {URIValue, URIValueType} from 'rheactor-value-objects'
 import {memoize} from 'lodash'
@@ -9,6 +7,8 @@ import {Promise} from 'bluebird'
 import {StaRH, StaRHsStatus, Profile, ProfileType, StaRHmap} from 'starhs-models'
 import {Link, LinkType, Status, List, JsonWebToken, JsonWebTokenType, HttpProblem, User} from 'rheactor-models'
 import {String as StringType, Object as ObjectType, Number as NumberType, maybe, Date as DateType} from 'tcomb'
+
+es6promisePolyfill()
 
 const MaybeObjectType = maybe(ObjectType)
 const MaybeJsonWebTokenType = maybe(JsonWebTokenType)

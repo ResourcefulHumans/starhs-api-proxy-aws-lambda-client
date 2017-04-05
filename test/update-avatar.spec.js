@@ -9,7 +9,7 @@ describe('updateAvatar()', () => {
   after(done => mockServer.close(done))
   it('should send the avatar to server', done => {
     let profile
-    const avatarPicture = new Buffer('1234', 'binary')
+    const avatarPicture = Buffer.from('1234', 'binary')
 
     mockServer = createMockServer({
       '^/avatarUpdate/Antarctica': (req, res) => {
@@ -27,7 +27,7 @@ describe('updateAvatar()', () => {
         }).on('end', () => {
           res.end(JSON.stringify({}))
           const payload = JSON.parse(Buffer.concat(body).toString())
-          expect(payload.file).to.equal(new Buffer('1234', 'binary').toString('base64'))
+          expect(payload.file).to.equal(Buffer.from('1234', 'binary').toString('base64'))
           done()
         })
       }
