@@ -43,6 +43,13 @@ export function createMockServer (routes) {
             {
               '$context': 'https://github.com/ResourcefulHumans/rheactor-models#Link',
               '$contextVersion': 1,
+              'subject': 'https://github.com/ResourcefulHumans/rheactor-models#User',
+              'href': 'http://127.0.0.1:61234/setNewPassword',
+              'rel': 'setNewPassword'
+            },
+            {
+              '$context': 'https://github.com/ResourcefulHumans/rheactor-models#Link',
+              '$contextVersion': 1,
               'subject': 'https://github.com/ResourcefulHumans/staRHs-models#StaRHmap',
               'href': 'http://127.0.0.1:61234/staRHmap'
             }

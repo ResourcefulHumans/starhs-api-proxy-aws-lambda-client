@@ -276,6 +276,21 @@ export class StaRHsAPIClient {
 
   /**
    * @param {JsonWebToken} token
+   * @param {string} oldPassword
+   * @param {string} newPassword
+   * @returns {Promise.<Object>}
+   */
+  setNewPassword (token, oldPassword, newPassword) {
+    JsonWebTokenType(token)
+    StringType(oldPassword)
+    StringType(newPassword)
+    return this.index()
+      .filter(link => link.subject.equals(User.$context) && link.rel === 'setNewPassword')
+      .spread(link => this.post(link.href, {oldPassword, newPassword}, token))
+  }
+
+  /**
+   * @param {JsonWebToken} token
    * @param {Date} start
    * @param {Date} end
    * @returns {Promise.<StaRHmap>}
